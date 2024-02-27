@@ -1,0 +1,116 @@
+\documentclass[unicode,11pt,a4paper,oneside,numbers=endperiod,openany]{scrartcl}
+
+\input{assignment.sty}
+
+\usepackage{amsmath}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+
+\setassignment
+\setduedate{11 March 2024, 23:59}
+
+\serieheader{High-Performance Computing Lab for CSE}{2024}
+            {Student: Noah Gigler}
+            {Discussed with: FULL NAME}{Solution for Project 1a}{}
+\newline
+
+\assignmentpolicy
+
+\section{Euler warm-up [10 points]}
+
+1. The module system is a tool used to manage software environments on a Euler. 
+It allows us to configure their environment by dynamically loading or unloading software modules. 
+These modules adjust system variables to ensure that the necessary binaries and libraries are accessible.
+You use it by loading specific software versions with module load and unloading them with module unload when done.
+\\
+2. Slurm is a tool used in big computer clusters to help manage who gets to use the computers and when. 
+It schedules tasks and makes sure everything runs smoothly by allocating resources like processors and memory.
+It's like the traffic controller for a cluster of computers.
+\\
+3.
+see hostname.cpp
+\\
+4.
+see slurm\_job\_one.sh
+\\
+5.
+see slurm\_job\_two.sh
+
+\section{Performance characteristics [50 points]}
+
+\subsection{Peak performance}
+
+\begin{table}[ht]
+\centering
+\caption{Euler VII Phase 1 and Phase 2 Specifications}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Phase} & \textbf{Compute Nodes} & \textbf{CPUs per Node} & \textbf{CPU} & \textbf{Clock Speed (GHz)} \\ \hline
+Phase 1        & 292                    & 2                      & AMD EPYC 7H12 & 2.6                        \\ \hline
+Phase 2        & 248                    & 2                      & AMD EPYC 7763 & 2.45                       \\ \hline
+\end{tabular}
+\end{table}
+
+Source: \url{https://scicomp.ethz.ch/wiki/Euler#Euler_VII_.E2.80.94_phase_1}
+
+\begin{align*}
+n_{\mathrm{super}} &= \frac{1}{TP} = 2 \\
+n_{\mathrm{FMA}} &= 2 \\
+n_{\mathrm{SMID}} &= 4 \\
+\end{align*}
+
+Values are the same for both Euler VII Phase 1 and 2.
+
+Source for FMA, TP and : \url{https://uops.info/table.html} \\
+Source for the SIMD values: "Software Optimization Guide for AMD EPYC™ 7002 Processors" and Software Optimization Guide for AMD EPYC™ 7003 Processors"\\
+
+\begin{align*}
+P_{\mathrm{core}} &= n_{\mathrm{super}} \cdot n_{\mathrm{FMA}} \cdot n_{\mathrm{SMID}} \cdot f \\
+P_{\mathrm{CPU}} &= P_{\mathrm{core}} \cdot \text{{\#Cores}} \\
+P_{\mathrm{node}} &= P_{\mathrm{core}} \cdot \text{{\#CPUs}} \\
+P_{\mathrm{Euler VII}} &= P_{\mathrm{node}} \cdot \text{{\#Nodes}}
+\end{align*}
+
+\begin{table}[ht]
+\centering
+\caption{Peak Performance Comparison}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Metric} & \textbf{Phase 1} & \textbf{Phase 2} \\ \hline
+$P_{\mathrm{core}}$ & $41.6 \, \mathrm{GFLOP/s}$ & $39.2 \, \mathrm{GFLOP/s}$ \\ \hline
+$P_{\mathrm{CPU}}$ & $2.66 \, \mathrm{TFLOP/s}$ & $2.51 \, \mathrm{TFLOP/s}$ \\ \hline
+$P_{\mathrm{node}}$ & $5.32 \, \mathrm{TFLOP/s}$ & $5.02 \, \mathrm{TFLOP/s}$ \\ \hline
+$P_{\mathrm{Euler VII}}$ & $1.55 \, \mathrm{PFLOP/s}$ & $1.24 \, \mathrm{PFLOP/s}$ \\ \hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Memory Hierarchies}
+
+\subsubsection{Cache and main memory size}
+
+\begin{table}[ht]
+\centering
+\caption{Cache and Main Memory Sizes}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Phase} & \textbf{L1 (KB)} & \textbf{L2 (KB)} & \textbf{L3 (MB)} & \textbf{Main Memory (GB)} \\ \hline
+Phase 1        & 32               & 512              & 16               & 256                      \\ \hline
+Phase 2        & 32               & 512              & 32               & 256                      \\ \hline
+\end{tabular}
+\end{table}
+
+The only difference between the cache sizes of Phase 1 and Phase 2 is the L3 cache size. 
+Phase 2 has twice the L3 cache size of Phase 1.
+
+\subsection{Bandwidth: STREAM benchmark}
+
+
+
+\subsection{Performance model: A simple roofline model}
+
+
+\end{document}
