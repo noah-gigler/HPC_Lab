@@ -65,7 +65,7 @@ n_{\mathrm{SMID}} &= 4 \\
 Values are the same for both Euler VII Phase 1 and 2.
 
 Source for FMA, TP and : \url{https://uops.info/table.html} \\
-Source for the SIMD values: "Software Optimization Guide for AMD EPYC™ 7002 Processors" and Software Optimization Guide for AMD EPYC™ 7003 Processors"\\
+Source for the SIMD values: "Software Optimization Guide for AMD EPYC™ 7002 Processors" and "Software Optimization Guide for AMD EPYC™ 7003 Processors"\\
 
 \begin{align*}
 P_{\mathrm{core}} &= n_{\mathrm{super}} \cdot n_{\mathrm{FMA}} \cdot n_{\mathrm{SMID}} \cdot f \\
@@ -108,9 +108,38 @@ Phase 2 has twice the L3 cache size of Phase 1.
 
 \subsection{Bandwidth: STREAM benchmark}
 
+\begin{table}[ht]
+\centering
+\caption{Memory Bandwidth Comparison}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Function} & \textbf{AMD EPYC 7H12} & \textbf{AMD EPYC 7763} \\ \hline
+Copy              & 33044.7 MB/s           & 34873.5 MB/s           \\ \hline
+Scale             & 25137.2 MB/s           & 24681.9 MB/s           \\ \hline
+Add               & 25676.8 MB/s           & 25473.4 MB/s           \\ \hline
+Triad             & 26346.1 MB/s           & 25710.9 MB/s           \\ \hline
+\end{tabular}
+\end{table}
+
+As we can see the bandwidths are roughly the same for both processors and most operations.
+The Copy operation has the highest bandwidth just as in the example provided. 
+Aside from that nothing else is particularly interesting about the results.
+The maximum bandwidth is approximately 25GB/s for both processors.
 
 
 \subsection{Performance model: A simple roofline model}
 
+The formula for the naive roofline model is:
+
+$$
+P = \begin{cases}
+    \pi & \pi < \beta \cdot I \\
+    \beta \cdot I & \text{else}
+\end{cases}
+$$
+
+Where $\pi$ is the peak performance and $I$ is the operational intensity and $\beta$ is the peak bandwidth.
+Here we are looking at the performance of a single core so we can use the peak performance we calculated in task 2.1.
+The peak bandwidth was calculated in task 2.3. 
 
 \end{document}
