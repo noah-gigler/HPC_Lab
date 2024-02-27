@@ -1,7 +1,0 @@
-Model name:            AMD EPYC 7763 64-Core Processor
-Memory = 20000000
-Function    Best Rate MB/s  Avg time     Min time     Max time
-Copy:           34873.5     0.009502     0.009176     0.009584
-Scale:          24681.9     0.013047     0.012965     0.013103
-Add:            25473.4     0.018925     0.018843     0.019021
-Triad:          25710.9     0.018747     0.018669     0.018815
