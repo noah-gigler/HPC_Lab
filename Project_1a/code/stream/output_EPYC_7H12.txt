@@ -1,0 +1,6 @@
+Model name:            AMD EPYC 7H12 64-Core Processor
+Function    Best Rate MB/s  Avg time     Min time     Max time
+Copy:           33044.7     0.009963     0.009684     0.010066
+Scale:          25137.2     0.012813     0.012730     0.012947
+Add:            25676.8     0.018785     0.018694     0.018898
+Triad:          26346.1     0.018317     0.018219     0.018438
