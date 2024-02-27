@@ -14,7 +14,7 @@
 
 \serieheader{High-Performance Computing Lab for CSE}{2024}
             {Student: Noah Gigler}
-            {Discussed with: FULL NAME}{Solution for Project 1a}{}
+            {Discussed with: Valentin Vogt, Felicia Scharitzer, Luis Wirth}{Solution for Project 1a}{}
 \newline
 
 \assignmentpolicy
@@ -114,17 +114,16 @@ Phase 2 has twice the L3 cache size of Phase 1.
 \begin{tabular}{|l|c|c|c|c|}
 \hline
 \textbf{Function} & \textbf{AMD EPYC 7H12} & \textbf{AMD EPYC 7763} \\ \hline
-Copy              & 33044.7 MB/s           & 34873.5 MB/s           \\ \hline
-Scale             & 25137.2 MB/s           & 24681.9 MB/s           \\ \hline
-Add               & 25676.8 MB/s           & 25473.4 MB/s           \\ \hline
-Triad             & 26346.1 MB/s           & 25710.9 MB/s           \\ \hline
+Copy              & 30804.4 MB/s           & 34873.5 MB/s           \\ \hline
+Scale             & 19134.3 MB/s           & 24681.9 MB/s           \\ \hline
+Add               & 21820.0 MB/s           & 25473.4 MB/s           \\ \hline
+Triad             & 21891.7 MB/s           & 25710.9 MB/s           \\ \hline
 \end{tabular}
 \end{table}
 
-As we can see the bandwidths are roughly the same for both processors and most operations.
-The Copy operation has the highest bandwidth just as in the example provided. 
-Aside from that nothing else is particularly interesting about the results.
-The maximum bandwidth is approximately 25GB/s for both processors.
+As we can see, the bandwidth of the AMD EPYC 7763 is higher than the AMD EPYC 7H12 for all functions.
+The Copy function generally has the highest bandwidth. The other functions have similar bandwidths.
+We can assume that the bandwidth of the AMD EPYC 7763 is 25Gb/s and the bandwidth of the AMD EPYC 7H12 is 20Gb/s.
 
 
 \subsection{Performance model: A simple roofline model}
@@ -141,5 +140,16 @@ $$
 Where $\pi$ is the peak performance and $I$ is the operational intensity and $\beta$ is the peak bandwidth.
 Here we are looking at the performance of a single core so we can use the peak performance we calculated in task 2.1.
 The peak bandwidth was calculated in task 2.3. 
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{../code/roofline/roofline_plot.png}
+\caption{Roofline Model}
+\label{fig:roofline}
+\end{figure}
+
+As we can see from the formula, the performance is limited by the bandwidth when $\pi < \beta \cdot I$ and by the peak performance when $\pi \geq \beta \cdot I$.
+In the graph this can be seen visually. As long as the performance is still increasing we are limited by the bandwidth and once the performance plateaus we are limited by the peak performance.
+
 
 \end{document}
