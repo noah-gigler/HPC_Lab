@@ -1,0 +1,117 @@
+rm -f benchmark-naive benchmark-blocked benchmark-blas benchmark.o dgemm-naive.o dgemm-blocked.o dgemm-blas.o
+gcc                          -c -Wall -std=gnu99 -O0        benchmark.c
+gcc                          -c -Wall -std=gnu99 -O0        dgemm-naive.c
+gcc                          -o benchmark-naive benchmark.o dgemm-naive.o -L/cluster/apps/gcc-11.4.0/openblas-0.3.20-ssgo6yxxzud3xbfabkvv77e6lpnq7hep -lopenblas              
+gcc                          -c -Wall -std=gnu99 -O0        -O3 -march=native dgemm-blocked.c
+gcc                          -o benchmark-blocked benchmark.o dgemm-blocked.o -L/cluster/apps/gcc-11.4.0/openblas-0.3.20-ssgo6yxxzud3xbfabkvv77e6lpnq7hep -lopenblas              
+gcc                          -c -Wall -std=gnu99 -O0        dgemm-blas.c
+gcc                          -o benchmark-blas benchmark.o dgemm-blas.o -L/cluster/apps/gcc-11.4.0/openblas-0.3.20-ssgo6yxxzud3xbfabkvv77e6lpnq7hep -lopenblas              
+==== benchmark-naive ======================
+# Description:	Naive, three-loop dgemm.
+
+Size:       31	Gflop/s:     0.38	Percentage:    0.97
+Size:       32	Gflop/s:     0.38	Percentage:    0.97
+Size:       96	Gflop/s:     0.38	Percentage:    0.97
+Size:       97	Gflop/s:     0.38	Percentage:    0.97
+Size:      127	Gflop/s:     0.38	Percentage:    0.97
+Size:      128	Gflop/s:     0.47	Percentage:    1.21
+Size:      129	Gflop/s:     0.48	Percentage:    1.21
+Size:      191	Gflop/s:     0.48	Percentage:    1.21
+Size:      192	Gflop/s:     0.48	Percentage:    1.22
+Size:      229	Gflop/s:     0.48	Percentage:    1.22
+Size:      255	Gflop/s:     0.48	Percentage:    1.22
+Size:      256	Gflop/s:     0.47	Percentage:    1.21
+Size:      257	Gflop/s:     0.48	Percentage:    1.22
+Size:      319	Gflop/s:     0.48	Percentage:    1.22
+Size:      320	Gflop/s:     0.48	Percentage:    1.22
+Size:      321	Gflop/s:     0.48	Percentage:    1.22
+Size:      417	Gflop/s:     0.48	Percentage:    1.22
+Size:      479	Gflop/s:     0.48	Percentage:    1.22
+Size:      480	Gflop/s:     0.48	Percentage:    1.22
+Size:      511	Gflop/s:     0.48	Percentage:    1.22
+Size:      512	Gflop/s:     0.43	Percentage:    1.08
+Size:      639	Gflop/s:     0.48	Percentage:    1.23
+Size:      640	Gflop/s:     0.48	Percentage:    1.22
+Size:      767	Gflop/s:     0.48	Percentage:    1.23
+Size:      768	Gflop/s:     0.45	Percentage:    1.15
+Size:      769	Gflop/s:     0.48	Percentage:    1.22
+Size:      800	Gflop/s:     0.48	Percentage:    1.24
+Size:      900	Gflop/s:     0.48	Percentage:    1.23
+Size:     1000	Gflop/s:     0.48	Percentage:    1.23
+Size:     1100	Gflop/s:     0.48	Percentage:    1.23
+Size:     1200	Gflop/s:     0.48	Percentage:    1.23
+# Average percentage of peak performance = 1.17374
+
+==== benchmark-blas =======================
+# Description:	Reference dgemm.
+
+Size:       31	Gflop/s:    24.75	Percentage:   63.13
+Size:       32	Gflop/s:    20.19	Percentage:   51.52
+Size:       96	Gflop/s:    34.80	Percentage:   88.78
+Size:       97	Gflop/s:    34.11	Percentage:   87.03
+Size:      127	Gflop/s:    36.62	Percentage:   93.42
+Size:      128	Gflop/s:    37.62	Percentage:   95.96
+Size:      129	Gflop/s:    37.33	Percentage:   95.24
+Size:      191	Gflop/s:    40.72	Percentage:  103.88
+Size:      192	Gflop/s:    41.99	Percentage:  107.12
+Size:      229	Gflop/s:    42.65	Percentage:  108.81
+Size:      255	Gflop/s:    43.11	Percentage:  109.98
+Size:      256	Gflop/s:    44.22	Percentage:  112.81
+Size:      257	Gflop/s:    43.18	Percentage:  110.16
+Size:      319	Gflop/s:    44.41	Percentage:  113.28
+Size:      320	Gflop/s:    45.81	Percentage:  116.86
+Size:      321	Gflop/s:    45.44	Percentage:  115.92
+Size:      417	Gflop/s:    47.33	Percentage:  120.73
+Size:      479	Gflop/s:    46.78	Percentage:  119.34
+Size:      480	Gflop/s:    48.33	Percentage:  123.28
+Size:      511	Gflop/s:    46.69	Percentage:  119.12
+Size:      512	Gflop/s:    46.20	Percentage:  117.85
+Size:      639	Gflop/s:    48.21	Percentage:  122.99
+Size:      640	Gflop/s:    49.05	Percentage:  125.13
+Size:      767	Gflop/s:    48.99	Percentage:  124.97
+Size:      768	Gflop/s:    49.61	Percentage:  126.56
+Size:      769	Gflop/s:    49.27	Percentage:  125.68
+Size:      800	Gflop/s:    50.01	Percentage:  127.58
+Size:      900	Gflop/s:    50.04	Percentage:  127.66
+Size:     1000	Gflop/s:    50.51	Percentage:  128.84
+Size:     1100	Gflop/s:    50.05	Percentage:  127.69
+Size:     1200	Gflop/s:    50.49	Percentage:  128.81
+# Average percentage of peak performance = 110.972
+
+==== benchmark-blocked ====================
+# Description:	Blocked dgemm.
+
+Size:       31	Gflop/s:    13.16	Percentage:   33.56
+Size:       32	Gflop/s:    14.56	Percentage:   37.13
+Size:       96	Gflop/s:    16.71	Percentage:   42.63
+Size:       97	Gflop/s:    17.91	Percentage:   45.69
+Size:      127	Gflop/s:    17.47	Percentage:   44.58
+Size:      128	Gflop/s:    17.53	Percentage:   44.72
+Size:      129	Gflop/s:    18.85	Percentage:   48.08
+Size:      191	Gflop/s:    16.64	Percentage:   42.44
+Size:      192	Gflop/s:    16.77	Percentage:   42.78
+Size:      229	Gflop/s:    16.82	Percentage:   42.90
+Size:      255	Gflop/s:    17.19	Percentage:   43.85
+Size:      256	Gflop/s:    17.61	Percentage:   44.91
+Size:      257	Gflop/s:    16.85	Percentage:   43.00
+Size:      319	Gflop/s:    15.83	Percentage:   40.37
+Size:      320	Gflop/s:    16.98	Percentage:   43.31
+Size:      321	Gflop/s:    16.04	Percentage:   40.91
+Size:      417	Gflop/s:    16.61	Percentage:   42.37
+Size:      479	Gflop/s:    16.08	Percentage:   41.02
+Size:      480	Gflop/s:    16.63	Percentage:   42.42
+Size:      511	Gflop/s:    15.97	Percentage:   40.75
+Size:      512	Gflop/s:    16.39	Percentage:   41.81
+Size:      639	Gflop/s:    15.93	Percentage:   40.64
+Size:      640	Gflop/s:    16.72	Percentage:   42.66
+Size:      767	Gflop/s:    16.13	Percentage:   41.14
+Size:      768	Gflop/s:    16.68	Percentage:   42.55
+Size:      769	Gflop/s:    16.23	Percentage:   41.40
+Size:      800	Gflop/s:    17.00	Percentage:   43.38
+Size:      900	Gflop/s:    16.99	Percentage:   43.33
+Size:     1000	Gflop/s:    16.81	Percentage:   42.89
+Size:     1100	Gflop/s:    17.02	Percentage:   43.42
+Size:     1200	Gflop/s:    17.15	Percentage:   43.74
+# Average percentage of peak performance = 42.3992
+
+==== plot results =========================
