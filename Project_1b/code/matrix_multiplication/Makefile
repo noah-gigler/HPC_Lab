@@ -2,7 +2,7 @@
 
 # Euler GCC config (module load gcc)
 CC = gcc                         # compiler (& linker)
-OPT = -O0                        # optimization flags (you may add more)
+OPT = -O0      # optimization flags (you may add more)
 CFLAGS = -Wall -std=gnu99 $(OPT) # standard compiler flags
 LDLIBS = -L${OPENBLAS_ROOT} \
          -lopenblas              # linker options
@@ -44,6 +44,9 @@ benchmark-blas: benchmark.o dgemm-blas.o
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $<
+
+dgemm-blocked.o: dgemm-blocked.c
+	$(CC) -c $(CFLAGS) -O3 -march=native $<
 
 .PHONY: clean
 clean:

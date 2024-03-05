@@ -82,7 +82,8 @@ int main(int argc, char **argv) {
                        900,
                       1000,
                       1100,
-                      1200};
+                      1200
+                      };
 
   int nsizes = sizeof(test_sizes)/sizeof(test_sizes[0]);
 
