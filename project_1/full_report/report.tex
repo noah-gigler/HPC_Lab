@@ -234,12 +234,13 @@ Anything above 150 will start to decrease the performance so we go with the theo
     \label{fig:image3}
 \end{figure}
 
-The pragma vector aligned is used to assert that the data is alligned in memory which saves the compiler from having to generate runtime alignment optimization.
-Another pragma that is used is the ivdep pragma which tells the compiler to ignore potential dependencies in the loop.
-The same effect can be used by using the restrict keyword to tell the compiler that the pointers are not aliased. 
-This combined with setting the optimization level to -O3 will allow the compiler to perform more aggressive optimizations.
+Using the restrict keyword we can tell the compiler that the memory pointed to by the pointers is not aliased.
+This allows the compiler to perform more aggressive optimizations.
+The same effect could be achieved by using the ivdep pragma but that would require us to use the intel compiler.
+Besides the fact that it is impracticle to use the intel compiler, it also results in slower code here even if we also use the allign pragma additionally to the ivdep pragma.
+All previous changes combined with setting the optimization level to -O3 will allow the compiler to perform more aggressive optimizations, resulting in a significant performance improvement.
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{timing_no_march.pdf}
     \caption{After the above optimizations}
@@ -249,7 +250,7 @@ This combined with setting the optimization level to -O3 will allow the compiler
 The final simple optimization we do is to use the -march=native flag in order to allow the compiler to generate code that is optimized for the specific architecture that we are running on.
 This alone adds a significant performance improvement.
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{timing_all.pdf}
     \caption{With architecture specific optimizations}
