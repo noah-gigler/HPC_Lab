@@ -1,0 +1,48 @@
+rm -f *.o pi_serial pi_omp_critical pi_omp_reduction *.data
+/cluster/apps/gcc-4.8.5/gcc-11.4.0-xxnwhndqaqpuzs4l4ty4yj5tg2cexcg4/bin/gcc -c -O2 -fopenmp pi_serial.c
+/cluster/apps/gcc-4.8.5/gcc-11.4.0-xxnwhndqaqpuzs4l4ty4yj5tg2cexcg4/bin/gcc -c -O2 -fopenmp walltime.c
+/cluster/apps/gcc-4.8.5/gcc-11.4.0-xxnwhndqaqpuzs4l4ty4yj5tg2cexcg4/bin/gcc -O2 -fopenmp pi_serial.o walltime.o -o pi_serial
+/cluster/apps/gcc-4.8.5/gcc-11.4.0-xxnwhndqaqpuzs4l4ty4yj5tg2cexcg4/bin/gcc -c -O2 -fopenmp pi_omp_critical.c
+/cluster/apps/gcc-4.8.5/gcc-11.4.0-xxnwhndqaqpuzs4l4ty4yj5tg2cexcg4/bin/gcc -O2 -fopenmp pi_omp_critical.o walltime.o -o pi_omp_critical
+/cluster/apps/gcc-4.8.5/gcc-11.4.0-xxnwhndqaqpuzs4l4ty4yj5tg2cexcg4/bin/gcc -c -O2 -fopenmp pi_omp_reduction.c
+/cluster/apps/gcc-4.8.5/gcc-11.4.0-xxnwhndqaqpuzs4l4ty4yj5tg2cexcg4/bin/gcc -O2 -fopenmp pi_omp_reduction.o walltime.o -o pi_omp_reduction
+Running with OMP_NUM_THREADS=1
+pi = -nan, N =         0, time = 0.00002315 secs
+pi = -nan, N =         0, time = 0.00002216 secs
+Running with OMP_NUM_THREADS=2
+pi = -nan, N =         0, time = 0.00011536 secs
+pi = -nan, N =         0, time = 0.00008998 secs
+Running with OMP_NUM_THREADS=4
+pi = -nan, N =         0, time = 0.00015844 secs
+pi = -nan, N =         0, time = 0.00014070 secs
+Running with OMP_NUM_THREADS=8
+pi = -nan, N =         0, time = 0.00763764 secs
+pi = -nan, N =         0, time = 0.00923515 secs
+Running with OMP_NUM_THREADS=16
+pi = -nan, N =         0, time = 0.04286358 secs
+pi = -nan, N =         0, time = 0.02347081 secs
+Running with OMP_NUM_THREADS=32
+pi = -nan, N =         0, time = 0.01635418 secs
+pi = -nan, N =         0, time = 0.02610209 secs
+Running with OMP_NUM_THREADS=64
+pi = -nan, N =         0, time = 0.00162632 secs
+pi = -nan, N =         0, time = 0.00136096 secs
+Running with OMP_NUM_THREADS=128
+pi = -nan, N =         0, time = 0.00349851 secs
+pi = -nan, N =         0, time = 0.00336007 secs
+serial
+pi = 3.141592653589764, N =   1000000, time = 0.00303022 secs
+serial
+pi = 3.141592653589764, N =   1000000, time = 0.00226703 secs
+serial
+pi = 3.141592653589764, N =   1000000, time = 0.00228154 secs
+serial
+pi = 3.141592653589764, N =   1000000, time = 0.00227481 secs
+serial
+pi = 3.141592653589764, N =   1000000, time = 0.00227448 secs
+serial
+pi = 3.141592653589764, N =   1000000, time = 0.00227100 secs
+serial
+pi = 3.141592653589764, N =   1000000, time = 0.00226762 secs
+serial
+pi = 3.141592653589764, N =   1000000, time = 0.00226421 secs

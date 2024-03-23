@@ -36,8 +36,9 @@ int main(int argc, char **argv) {
         // stop if the number of iterations exceeds the bound MAX_ITERS.
         int n = 0;
         while(x2 + y2 < 4.0 && n < MAX_ITERS){
-            x = x * x
-            y = 
+            double old_x = x;
+            x = x2 - y2 + cx;
+            y = 2 * old_x * y + cy;
             x2 = x * x;
             y2 = y * y;
             n += 1;

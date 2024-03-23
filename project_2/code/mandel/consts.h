@@ -8,6 +8,7 @@
 #define IMAGE_WIDTH 4096
 #define IMAGE_HEIGHT 4096
 
+
 // the extent of the parameter plane ( MIN_X + iMIN_Y <= c < MAX_X + iMAX_Y )
 #define MIN_X -2.1
 #define MAX_X 0.7

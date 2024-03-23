@@ -1,0 +1,31 @@
+rm -f *.o pi_serial pi_omp_critical pi_omp_reduction *.data
+/cluster/apps/gcc-4.8.5/gcc-11.4.0-xxnwhndqaqpuzs4l4ty4yj5tg2cexcg4/bin/gcc -c -O2 -fopenmp pi_serial.c
+/cluster/apps/gcc-4.8.5/gcc-11.4.0-xxnwhndqaqpuzs4l4ty4yj5tg2cexcg4/bin/gcc -c -O2 -fopenmp walltime.c
+/cluster/apps/gcc-4.8.5/gcc-11.4.0-xxnwhndqaqpuzs4l4ty4yj5tg2cexcg4/bin/gcc -O2 -fopenmp pi_serial.o walltime.o -o pi_serial
+/cluster/apps/gcc-4.8.5/gcc-11.4.0-xxnwhndqaqpuzs4l4ty4yj5tg2cexcg4/bin/gcc -c -O2 -fopenmp pi_omp_critical.c
+/cluster/apps/gcc-4.8.5/gcc-11.4.0-xxnwhndqaqpuzs4l4ty4yj5tg2cexcg4/bin/gcc -O2 -fopenmp pi_omp_critical.o walltime.o -o pi_omp_critical
+/cluster/apps/gcc-4.8.5/gcc-11.4.0-xxnwhndqaqpuzs4l4ty4yj5tg2cexcg4/bin/gcc -c -O2 -fopenmp pi_omp_reduction.c
+/cluster/apps/gcc-4.8.5/gcc-11.4.0-xxnwhndqaqpuzs4l4ty4yj5tg2cexcg4/bin/gcc -O2 -fopenmp pi_omp_reduction.o walltime.o -o pi_omp_reduction
+Running with OMP_NUM_THREADS=1
+pi = 3.141592653589764, N =   1000000, time = 0.00304673 secs
+pi = 3.141592653589764, N =   1000000, time = 0.00228576 secs
+Running with OMP_NUM_THREADS=2
+pi = 3.141592653589899, N =   1000000, time = 0.00157107 secs
+pi = 3.141592653589899, N =   1000000, time = 0.00157649 secs
+Running with OMP_NUM_THREADS=4
+pi = 3.141592653589876, N =   1000000, time = 0.00101991 secs
+pi = 3.141592653589876, N =   1000000, time = 0.00087586 secs
+Running with OMP_NUM_THREADS=8
+pi = 3.141592653589871, N =   1000000, time = 0.01068280 secs
+pi = 3.141592653589871, N =   1000000, time = 0.01835097 secs
+Running with OMP_NUM_THREADS=16
+pi = 3.141592653589872, N =   1000000, time = 0.00054352 secs
+pi = 3.141592653589872, N =   1000000, time = 0.02503517 secs
+Running with OMP_NUM_THREADS=32
+pi = 3.141592653589874, N =   1000000, time = 0.03458239 secs
+pi = 3.141592653589875, N =   1000000, time = 0.03470715 secs
+Running with OMP_NUM_THREADS=64
+pi = 3.141592653589878, N =   1000000, time = 0.00202821 secs
+pi = 3.141592653589878, N =   1000000, time = 0.00204239 secs
+serial
+pi = 3.141592653589764, N =   1000000, time = 0.00188543 secs
