@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=hist_seq      # Job name
-#SBATCH --output=hist_seq-%j.out # Output file
-#SBATCH --error=hist_seq-%j.err  # Error file
+#SBATCH --job-name=hist      # Job name
+#SBATCH --output=hist.out # Output file
+#SBATCH --error=hist.err  # Error file
 #SBATCH --ntasks=1               # Number of tasks
 #SBATCH --constraint=EPYC_7763   # Select node with CPU
 #SBATCH --cpus-per-task=4        # Number of CPUs per task
@@ -17,4 +17,8 @@ make clean
 make
 
 # Run
+echo "Sequential"
 ./hist_seq
+
+echo "Parallel"
+./hist_par

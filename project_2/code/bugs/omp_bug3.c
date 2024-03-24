@@ -53,7 +53,6 @@ int main(int argc, char *argv[]) {
 /*** Use barrier for clean output ***/
 #pragma omp barrier
     printf("Thread %d exiting...\n", tid);
-
   } /* end of parallel section */
 }
 
@@ -66,7 +65,7 @@ void print_results(float array[N], int tid, int section) {
   {
     printf("\nThread %d did section %d. The results are:\n", tid, section);
     for (i = 0; i < N; i++) {
-      printf("%e  ", array[i]);
+      printf("%.f  ", array[i]);
       j++;
       if (j == 6) {
         printf("\n");
@@ -75,7 +74,5 @@ void print_results(float array[N], int tid, int section) {
     }
     printf("\n");
   } /*** end of critical ***/
-
-#pragma omp barrier
   printf("Thread %d done and synchronized.\n", tid);
 }

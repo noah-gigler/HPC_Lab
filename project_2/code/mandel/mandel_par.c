@@ -25,10 +25,12 @@ int main(int argc, char **argv) {
   double time_start = walltime();
   // do the calculation
   cy = MIN_Y;
-  #pragma omp parallel for reduction(+:nTotalIterationsCount) private(i, j, cx, x, y, x2, y2)
+  #pragma omp parallel for reduction(+:nTotalIterationsCount) private(x, y, x2, y2, cx, cy)
   for (j = 0; j < IMAGE_HEIGHT; j++) {
     cx = MIN_X;
     for (i = 0; i < IMAGE_WIDTH; i++) {
+        cx = MIN_X + i * fDeltaX;
+        cy = MIN_Y + j * fDeltaY;
         x = cx;
         y = cy;
         x2 = x * x;
@@ -44,14 +46,13 @@ int main(int argc, char **argv) {
             x2 = x * x;
             y2 = y * y;
             n += 1;
+            nTotalIterationsCount++;
         }
         // n indicates if the point belongs to the mandelbrot set
         // plot the number of iterations at point (i, j)
         int c = ((long)n * 255) / MAX_ITERS;
         png_plot(pPng, i, j, c, c, c);
-        cx += fDeltaX;
     }
-    cy += fDeltaY;
   }
   double time_end = walltime();
 

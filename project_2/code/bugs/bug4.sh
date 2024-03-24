@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=mandel  # Job name    (default: sbatch)
-#SBATCH --output=mandel.out   # Output file (default: slurm-%j.out)
-#SBATCH --error=mandel.err    # Error file  (default: slurm-%j.out)
+#SBATCH --job-name=bug4  # Job name    (default: sbatch)
+#SBATCH --output=bug4.out   # Output file (default: slurm-%j.out)
+#SBATCH --error=bug4.err    # Error file  (default: slurm-%j.out)
 #SBATCH --ntasks=1                # Number of tasks
 #SBATCH --constraint=EPYC_7763    # Select node with CPU
 #SBATCH --cpus-per-task=64       # Number of CPUs per task
@@ -10,11 +10,14 @@
 
 # Load some modules
 module load gcc
-module load python/3.11.6
 
 module list
 
 # Compile
-gcc -o mandel mandel_par.c pngwriter.c walltime.c -lpng -fopenmp
+make
 
-./mandel
+ulimit -s 10000
+OMP_NUM_THREADS=8
+OMP_STACKSIZE=10M
+
+./omp_bug4
