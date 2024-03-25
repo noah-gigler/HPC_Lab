@@ -7,41 +7,46 @@ def plot_strong(arr_time_average_ser, arr_time_average_crit, arr_time_average_re
     speedup_critical = arr_time_average_ser / np.array(arr_time_average_crit)
     speedup_reduction = arr_time_average_ser / np.array(arr_time_average_red)
     
-    plt.plot(n_threads, speedup_critical, label='critical')
-    plt.plot(n_threads, speedup_reduction, label='reduction')
-    plt.xlabel('nthreads')
-    plt.ylabel('speedup')
+    plt.figure(figsize=(10, 5))
+    plt.plot(n_threads, speedup_critical, marker='o', label='critical')
+    plt.plot(n_threads, speedup_reduction, marker='o', label='reduction')
+    plt.title('Speedup: Parallel vs Sequential')
+    plt.xlabel('Number of Threads')
+    plt.ylabel('Speedup')
+    plt.grid(True)
     plt.legend()
-    plt.title('Strong Scaling')
-    plt.savefig('strong_speed.pdf')
-                      
+    plt.savefig('pi_strong.png')
+
 def plot_weak(arr_time_average_ser, arr_time_average_crit, arr_time_average_red, n_threads):
     plt.clf()
     speedup_critical = np.array(arr_time_average_ser) / np.array(arr_time_average_crit)
     speedup_reduction = np.array(arr_time_average_ser) / np.array(arr_time_average_red)
    
-    plt.plot(n_threads, speedup_critical, label='critical')
-    plt.plot(n_threads, speedup_reduction, label='reduction')
-    plt.xlabel('nthreads')
-    plt.ylabel('speedup')
+    plt.figure(figsize=(10, 5))
+    plt.plot(n_threads, speedup_critical, marker='o', label='critical')
+    plt.plot(n_threads, speedup_reduction, marker='o', label='reduction')
+    plt.title('Speedup: Parallel vs Sequential')
+    plt.xlabel('Number of Threads')
+    plt.ylabel('Speedup')
+    plt.grid(True)
     plt.legend()
-    plt.title('Weak Scaling')
-    plt.savefig('weak_speed.pdf')
-    
+    plt.savefig('pi_weak.png')
+
 def plot_eff_weak(time_aver_crit1, time_aver_red1, arr_time_aver_crit, arr_time_aver_red, n_threads):
     plt.clf()
     eff_crit = time_aver_crit1 / np.array(arr_time_aver_crit) 
     eff_red = time_aver_red1 / np.array(arr_time_aver_red) 
     
-    plt.plot(n_threads, eff_crit, label='critical')
-    plt.plot(n_threads, eff_red, label='reduction')
+    plt.figure(figsize=(10, 5))
+    plt.plot(n_threads, eff_crit, marker='o', label='critical')
+    plt.plot(n_threads, eff_red, marker='o', label='reduction')
     plt.axhline(y=1, color='r', linestyle='--', label='ideal critical')
-    plt.xlabel('nthreads')
-    plt.ylabel('efficiency')
+    plt.title('Efficiency: Parallel vs Sequential')
+    plt.xlabel('Number of Threads')
+    plt.ylabel('Efficiency')
+    plt.grid(True)
     plt.legend()
-    plt.title('Weak Scaling')
-    plt.savefig('weak_eff.pdf')
-    
+    plt.savefig('pi_eff_weak.png')
 
 def run_strong(n_threads, exe_path, n_runs, time_average):
     total_time = 0
