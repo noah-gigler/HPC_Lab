@@ -1,0 +1,351 @@
+rm -f *.o quicksort_par quicksort_seq
+gcc -c -O3 -fopenmp quicksort_par.c
+gcc -c -O3 -fopenmp walltime.c
+gcc -O3 -fopenmp quicksort_par.o walltime.o -o quicksort_par
+gcc -c -O3 -fopenmp quicksort_seq.c
+gcc -O3 -fopenmp quicksort_seq.o walltime.o -o quicksort_seq
+Strong Scaling
+Running with OMP_NUM_THREADS = 1
+Serial
+Size of dataset: 100000000, elapsed time[s] 2.535460e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.558168e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.573812e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.578377e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.533659e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.539902e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.568547e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.551155e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.543576e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.542537e+01 
+
+Parallel
+Size of dataset: 100000000, elapsed time[s] 2.871964e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.836840e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.830253e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.841244e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.811572e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.792909e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.789325e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.837774e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.826310e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.865325e+01 
+
+Running with OMP_NUM_THREADS = 2
+Serial
+Size of dataset: 100000000, elapsed time[s] 2.574010e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.542567e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.574497e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.558511e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.565400e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.588277e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.560677e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.559686e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.568315e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.546438e+01 
+
+Parallel
+Size of dataset: 100000000, elapsed time[s] 9.711524e+00 
+
+Size of dataset: 100000000, elapsed time[s] 9.014008e+00 
+
+Size of dataset: 100000000, elapsed time[s] 9.856454e+00 
+
+Size of dataset: 100000000, elapsed time[s] 8.752533e+00 
+
+Size of dataset: 100000000, elapsed time[s] 9.906608e+00 
+
+Size of dataset: 100000000, elapsed time[s] 9.875833e+00 
+
+Size of dataset: 100000000, elapsed time[s] 9.812133e+00 
+
+Size of dataset: 100000000, elapsed time[s] 8.889857e+00 
+
+Size of dataset: 100000000, elapsed time[s] 9.741447e+00 
+
+Size of dataset: 100000000, elapsed time[s] 1.093188e+01 
+
+Running with OMP_NUM_THREADS = 4
+Serial
+Size of dataset: 100000000, elapsed time[s] 2.555363e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.601536e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.570633e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.585269e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.520143e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.528455e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.537743e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.532645e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.545580e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.549953e+01 
+
+Parallel
+Size of dataset: 100000000, elapsed time[s] 6.468714e+00 
+
+Size of dataset: 100000000, elapsed time[s] 6.425252e+00 
+
+Size of dataset: 100000000, elapsed time[s] 6.578078e+00 
+
+Size of dataset: 100000000, elapsed time[s] 5.833355e+00 
+
+Size of dataset: 100000000, elapsed time[s] 6.607526e+00 
+
+Size of dataset: 100000000, elapsed time[s] 5.045363e+00 
+
+Size of dataset: 100000000, elapsed time[s] 5.188502e+00 
+
+Size of dataset: 100000000, elapsed time[s] 5.505717e+00 
+
+Size of dataset: 100000000, elapsed time[s] 6.362927e+00 
+
+Size of dataset: 100000000, elapsed time[s] 5.582618e+00 
+
+Running with OMP_NUM_THREADS = 8
+Serial
+Size of dataset: 100000000, elapsed time[s] 2.572447e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.576022e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.532244e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.541865e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.546989e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.572253e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.581213e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.579095e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.581129e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.570399e+01 
+
+Parallel
+Size of dataset: 100000000, elapsed time[s] 4.077441e+00 
+
+Size of dataset: 100000000, elapsed time[s] 4.464288e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.534124e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.922104e+00 
+
+Size of dataset: 100000000, elapsed time[s] 4.229449e+00 
+
+Size of dataset: 100000000, elapsed time[s] 4.162415e+00 
+
+Size of dataset: 100000000, elapsed time[s] 4.185137e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.931032e+00 
+
+Size of dataset: 100000000, elapsed time[s] 4.147592e+00 
+
+Size of dataset: 100000000, elapsed time[s] 4.006619e+00 
+
+Running with OMP_NUM_THREADS = 16
+Serial
+Size of dataset: 100000000, elapsed time[s] 2.605187e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.528375e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.547848e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.557082e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.543732e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.543703e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.559997e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.547583e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.584362e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.524247e+01 
+
+Parallel
+Size of dataset: 100000000, elapsed time[s] 3.294622e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.476995e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.564661e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.115095e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.281755e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.216144e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.212387e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.148406e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.102536e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.545068e+00 
+
+Running with OMP_NUM_THREADS = 32
+Serial
+Size of dataset: 100000000, elapsed time[s] 2.537252e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.560661e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.549905e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.545985e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.579805e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.554073e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.564242e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.569149e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.578144e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.538831e+01 
+
+Parallel
+Size of dataset: 100000000, elapsed time[s] 2.970219e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.206054e+00 
+
+Size of dataset: 100000000, elapsed time[s] 2.870751e+00 
+
+Size of dataset: 100000000, elapsed time[s] 2.995179e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.119556e+00 
+
+Size of dataset: 100000000, elapsed time[s] 2.998184e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.003639e+00 
+
+Size of dataset: 100000000, elapsed time[s] 2.918994e+00 
+
+Size of dataset: 100000000, elapsed time[s] 2.900064e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.278677e+00 
+
+Running with OMP_NUM_THREADS = 64
+Serial
+Size of dataset: 100000000, elapsed time[s] 2.559206e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.565515e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.572641e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.557483e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.598027e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.580702e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.565340e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.579750e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.569633e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.579220e+01 
+
+Parallel
+Size of dataset: 100000000, elapsed time[s] 3.101698e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.219713e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.174496e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.620412e+00 
+
+Size of dataset: 100000000, elapsed time[s] 2.777250e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.112739e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.111111e+00 
+
+Size of dataset: 100000000, elapsed time[s] 2.961783e+00 
+
+Size of dataset: 100000000, elapsed time[s] 2.609125e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.197512e+00 
+
+Running with OMP_NUM_THREADS = 128
+Serial
+Size of dataset: 100000000, elapsed time[s] 2.581949e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.552823e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.561488e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.563161e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.567788e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.560222e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.589987e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.555322e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.543535e+01 
+
+Size of dataset: 100000000, elapsed time[s] 2.600261e+01 
+
+Parallel
+Size of dataset: 100000000, elapsed time[s] 3.028949e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.398947e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.647546e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.405480e+00 
+
+Size of dataset: 100000000, elapsed time[s] 2.979439e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.097053e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.507134e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.111752e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.303199e+00 
+
+Size of dataset: 100000000, elapsed time[s] 3.625260e+00 
+

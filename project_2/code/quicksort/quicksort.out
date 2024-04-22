@@ -1,0 +1,10 @@
+rm -f *.o quicksort_par quicksort_seq
+gcc -c -O3 -fopenmp quicksort_par.c
+gcc -c -O3 -fopenmp walltime.c
+gcc -O3 -fopenmp quicksort_par.o walltime.o -o quicksort_par
+gcc -c -O3 -fopenmp quicksort_seq.c
+gcc -O3 -fopenmp quicksort_seq.o walltime.o -o quicksort_seq
+Sequential
+Size of dataset: 10000000, elapsed time[s] 2.186381e+00 
+Parallel
+Size of dataset: 10000000, elapsed time[s] 2.710579e-01 
