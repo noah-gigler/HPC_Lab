@@ -8,3 +8,5 @@
 project_one.out
 report
 *.bin
+*.-
+*.DS_Store

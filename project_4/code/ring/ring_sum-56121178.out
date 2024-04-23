@@ -1,0 +1,7 @@
+rm -f ring_sum
+mpicc  ring_sum.c -o ring_sum
+Process 4: Sum = 10
+Process 0: Sum = 10
+Process 1: Sum = 10
+Process 2: Sum = 10
+Process 3: Sum = 10
