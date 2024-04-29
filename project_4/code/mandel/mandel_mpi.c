@@ -114,49 +114,48 @@ int main(int argc, char** argv) {
 	// assume there are 8 floating point operations per iteration
 	printf ("[Process %d] MFlop/s:                    %g\n", mpi_rank, nTotalIterationsCount * 8.0 / (double) (nTimeEnd - nTimeStart));
 
-	// Send the data to the master
-	if (mpi_rank != 0)
-	{
-		// TODO: send local partition c to the master process
-	}
-	/****************************************************************************/
-	// Write the image
-	if (mpi_rank == 0)
-	{
-		// first write master's own data
-		for (j = 0; j < d.ny; j++) // HEIGHT
-		{
-			for (i = 0; i < d.nx; i++) // WIDTH
-			{
-				int c_ij = c[index(i,j,d.nx)];
-				png_plot (pPng, i+d.startx, j+d.starty, c_ij ,c_ij, c_ij);
-			}
-		}
+  // Send the data to the master
+  if (mpi_rank != 0) {
+    // TODO: send local partition c to the master process
+    MPI_Send(c, d.nx * d.ny, MPI_INT, 0, 0, p.comm);
+  }
+  /****************************************************************************/
+  // Write the image
+  if (mpi_rank == 0) {
+    // first write master's own data
+    for (j = 0; j < d.ny; j++) // HEIGHT
+    {
+      for (i = 0; i < d.nx; i++) // WIDTH
+      {
+        int c_ij = c[index(i, j, d.nx)];
+        png_plot(pPng, i + d.startx, j + d.starty, c_ij, c_ij, c_ij);
+      }
+    }
 
-		// receive and write the data from other processes
-		for (int proc = 1; proc < mpi_size; proc++)
-		{
-			Partition p1 = updatePartition(p, proc);
-			Domain d1 = createDomain(p1);
+    // receive and write the data from other processes
+    for (int proc = 1; proc < mpi_size; proc++) {
+      Partition p1 = updatePartition(p, proc);
+      Domain d1 = createDomain(p1);
 
-			// TODO: receive partition of the process proc into array c (overwrite its data)
+      // TODO: receive partition of the process proc into array c (overwrite its
+      // data)
+      MPI_Recv(c, d1.nx * d1.ny, MPI_INT, proc, 0, p.comm, MPI_STATUS_IGNORE); 
 
-			// write the partition of the process proc
-			for (j = 0; j < d1.ny; j++) // HEIGHT
-			{
-				for (i = 0; i < d1.nx; i++) // WIDTH
-				{
-					int c_ij = c[index(i,j,d1.nx)];
-					png_plot (pPng, i+d1.startx, j+d1.starty, c_ij ,c_ij, c_ij);
-				}
-			}
-		}
+      // write the partition of the process proc
+      for (j = 0; j < d1.ny; j++) // HEIGHT
+      {
+        for (i = 0; i < d1.nx; i++) // WIDTH
+        {
+          int c_ij = c[index(i, j, d1.nx)];
+          png_plot(pPng, i + d1.startx, j + d1.starty, c_ij, c_ij, c_ij);
+        }
+      }
+    }
 
-		png_write (pPng, "mandel.png");
-	}
-
+    png_write(pPng, "mandel.png");
+  }
 	//TODO: uncomment after you implement createPartition(int mpi_rank, int mpi_size)
-	//MPI_Comm_free(&p.comm);
+	MPI_Comm_free(&p.comm);
 	free(c);
 	MPI_Finalize();
 	return 0;
