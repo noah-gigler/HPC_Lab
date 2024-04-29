@@ -1,6 +1,8 @@
 #ifndef CONSTS_H
 #define CONSTS_H
 
+#include <mpi.h>
+
 // maximum number of iterations
 #define MAX_ITERS 35207
 
@@ -45,8 +47,8 @@ Partition createPartition(int mpi_rank, int mpi_size) {
     int dims[2] = {0, 0};
     MPI_Dims_create(mpi_size, 2, dims);
 
-    p.nx = dims[0];
-    p.ny = dims[1];
+    p.nx = dims[1];
+    p.ny = dims[0];
 
     // TODO: Create cartesian communicator (p.comm), we do not allow the reordering of ranks here, see MPI_Cart_create()
     int periods[2] = {0, 0};
@@ -57,8 +59,9 @@ Partition createPartition(int mpi_rank, int mpi_size) {
     // TODO: Determine the coordinates in the Cartesian grid (p.x, p.y), see MPI_Cart_coords()
     int coords[2];
     MPI_Cart_coords(comm_cart, mpi_rank, 2, coords);
-    p.y = coords[0];
     p.x = coords[1];
+    p.y = coords[0];
+
 
     return p;
 }
