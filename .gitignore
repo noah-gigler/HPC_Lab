@@ -10,3 +10,12 @@ report
 *.bin
 *.-
 *.DS_Store
+*.out
+*.err
+*.o
+*.gp
+*.data
+.vscode
+._*
+
+._.

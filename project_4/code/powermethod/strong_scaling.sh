@@ -3,10 +3,10 @@
 #SBATCH --output=power_strong-%j.out # Output file
 #SBATCH --error=power_strong-%j.err  # Error file
 #SBATCH --ntasks=64                  # Number of tasks
-#SBATCH --nodes=64                   # MULTI
+#SBATCH --nodes=1                   # MULTI
 #SBATCH --constraint=EPYC_7763       # Select node with CPU
 #SBATCH --mem-per-cpu=1024           # Memory per CPU
-#SBATCH --time=02:00:00              # Wall clock time limit
+#SBATCH --time=03:00:00              # Wall clock time limit
 #SBATCH --mail-type=END
 
 module load gcc
@@ -14,7 +14,7 @@ module load openmpi
 
 make clean && make
 
-TIME_FILE="strong_scaling_${SLURM_JOB_ID}.txt"
+TIME_FILE="strong_scaling_single.txt"
 echo "n_threads, n_matrix, n_iters, theta, time" > $TIME_FILE
 
 # Arguments
