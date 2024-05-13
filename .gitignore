@@ -17,5 +17,6 @@ report
 *.data
 .vscode
 ._*
+project05-env/
 
 ._.
